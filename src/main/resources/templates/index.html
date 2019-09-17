@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Coffee shop</title>
+<head>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div>
+    <div>
+        <img src="../static/images/java.png" width="256" height="256" th:src="@{images/java.png}"/>
+    </div>
+    <div id="message" class="message"></div>
+    <div class="select">
+        <select class="form-control" id="coffee-sort">
+            <option value="0">Select coffee</option>
+            <option th:each="coffee : ${coffees}" th:value="${coffee.id}" th:text="${coffee.sort}"></option>
+        </select>
+    </div>
+    <div class="buy-div">
+        <label>
+            Count:
+            <input id="coffee-count" class="coffee-count" type="number"/>
+        </label>
+        <button class="btn" onclick="buy()">BUY!</button>
+    </div>
+</div>
+
+
+<script>
+    function buy() {
+        let id = document.getElementById("coffee-sort").value;
+        let count = document.getElementById("coffee-count").value;
+        let msg = document.getElementById("message");
+        msg.style.display = 'block';
+        if (Number(id) === 0) {
+            msg.style.color = "red";
+            msg.innerText = "You must choose sort of coffee";
+            return;
+        }
+        if (count < 1) {
+            msg.style.color = "red";
+            msg.innerText = "Count must be positive";
+            return;
+        }
+        fetch("/coffee/" + id + "?count=" + count, {
+            method: 'POST'
+        }).then(function (response) {
+            if (response.status !== 200) {
+                msg.style.color = "red";
+                msg.innerText = "Oops! It seems we don’t have enough the selected coffee";
+                return;
+            }
+            return response.json();
+        }).then(function (data) {
+            if (data === undefined) {
+                msg.style.color = "red";
+                msg.innerText = "Oops! It seems we don’t have enough the selected coffee";
+            } else {
+                msg.style.color = "blue";
+                msg.innerText = "Successfully! Your order is " + data;
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

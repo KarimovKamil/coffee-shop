@@ -1,0 +1,10 @@
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'ESPRESSO');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'DOUBLE ESPRESSO');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'SHORT MACCHIATO');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'LONG MACCHIATO');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'RISTRETTO');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'AMERICANO');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'CAFE LATTE');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'CAPPUCCINO');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'MOCHA');
+INSERT INTO coffee (coffee_count, coffee_sort) VALUES (50, 'AFFOGATO');
