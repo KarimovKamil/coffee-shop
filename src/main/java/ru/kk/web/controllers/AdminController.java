@@ -43,7 +43,7 @@ public class AdminController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Coffee> getAll() {
         return coffeeService.getAllCoffees();
     }
