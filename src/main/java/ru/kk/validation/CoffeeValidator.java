@@ -19,11 +19,13 @@ public class CoffeeValidator {
     public void checkNewCoffee(Coffee coffee) {
         checkCoffeeCount(coffee.getCount());
         checkCoffeeSort(coffee.getSort());
+        checkCoffeeCost(coffee.getCost());
     }
 
     public void checkUpdatingCoffee(Coffee coffee) {
         coffeeExists(coffee.getId());
         checkCoffeeCount(coffee.getCount());
+        checkCoffeeCost(coffee.getCost());
         checkExistingCoffeeSort(coffee.getSort(), coffee.getId());
     }
 
@@ -42,6 +44,18 @@ public class CoffeeValidator {
     public void checkExistingCoffeeSort(String sort, int id) {
         if (sort != null && coffeeDao.existsBySortExcept(sort.toUpperCase(), id)) {
             throw new IncorrectDataException("Sort must be unique");
+        }
+    }
+
+    public void checkCoffeeCost(int cost) {
+        if (cost < 1) {
+            throw new IncorrectDataException("Cost must be positive");
+        }
+    }
+
+    public void checkBuyingCount(int count) {
+        if (count < 1 ) {
+            throw new IncorrectDataException("Count must be positive");
         }
     }
 

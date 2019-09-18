@@ -1,6 +1,5 @@
 package ru.kk.services;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,6 +68,7 @@ public class CoffeeServiceImpl implements CoffeeService {
         if (coffee == null) {
             throw new CoffeeNotFoundException();
         }
+        coffeeValidator.checkBuyingCount(count);
         if (coffee.getCount() < count) {
             throw new IncorrectDataException("Amount of exists coffee not enough");
         }

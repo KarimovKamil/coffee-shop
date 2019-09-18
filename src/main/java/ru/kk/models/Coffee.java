@@ -21,4 +21,6 @@ public class Coffee {
     private String sort;
     @Column(name = "coffee_count")
     private long count;
+    @Column(name = "coffee_cost")
+    private int cost;
 }
